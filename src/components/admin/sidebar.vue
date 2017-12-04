@@ -2,7 +2,7 @@
   <el-row class="tac sidebar">
     <h1 class="logo">logo</h1>
     <el-col :span="24">
-      <el-menu default-active="2" @open="handleOpen" @close="handleClose">
+      <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-location"></i>
@@ -35,8 +35,12 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   export default {
     name: 'sidebar',
+    computed: {
+      ...mapState(['navListData'])
+    },
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
@@ -58,13 +62,13 @@
     z-index: 0;
     border-right: solid 1px #e6e6e6;
   }
-  
+
   .logo {
     font-size: 18px;
     text-align: center;
     line-height: 56px;
   }
-  
+
   .el-menu {
     border: 0;
   }
