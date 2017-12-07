@@ -8,7 +8,7 @@ import InContainer from '../components/admin/Incontainer.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -32,6 +32,9 @@ export default new Router({
       name: 'IndexAdmin',
       component: IndexAdmin,
       redirect: '/admin',
+      meta: {
+        requireAuth: true
+      },
       children: [
         {
           path: '/admin',
@@ -40,4 +43,7 @@ export default new Router({
       ]
     }
   ]
-})
+});
+
+
+export default router;

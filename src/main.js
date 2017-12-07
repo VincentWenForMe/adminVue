@@ -11,11 +11,24 @@ import '../node_modules/element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
+router.beforeEach((to, form, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    if (!store.state.user && (to.path === '/admin')) {
+      next({path: '/login'});
+    } else {
+      next();
+    }
+  }
+});
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: {App}
 });
