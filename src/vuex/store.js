@@ -40,18 +40,52 @@ const state = {
           ]
         },
       ]
+    },
+    {
+      id: '2',
+      name: '产品中心2',
+      secNav: [
+        {
+          id: '1-1',
+          name: 'XX系列',
+          thirdNav: [
+            {id: '1-1-1', name: 'XX产品1'},
+            {id: '1-1-2', name: 'XX产品2'},
+            {id: '1-1-3', name: 'XX产品3'},
+            {id: '1-1-4', name: 'XX产品4'},
+          ]
+        },
+        {
+          id: '1-2',
+          name: 'XX系列',
+          thirdNav: [
+            {id: '1-2-1', name: 'XX产品1'},
+            {id: '1-2-2', name: 'XX产品2'},
+            {id: '1-2-3', name: 'XX产品3'},
+            {id: '1-2-4', name: 'XX产品4'},
+          ]
+        },
+        {
+          id: '1-3',
+          name: 'XX系列',
+          thirdNav: [
+            {id: '1-3-1', name: 'XX产品1'},
+            {id: '1-3-2', name: 'XX产品2'},
+            {id: '1-3-3', name: 'XX产品3'},
+            {id: '1-3-4', name: 'XX产品4'},
+          ]
+        },
+      ]
     }
   ],
-  user: false
-};
-const mutations = {
-  login(state, user) {
-    state.user = user;
-  },
-  loginOut(state, user) {
-    state.user = false;
+  user: {
+    name: 'wen',
+    password: '123456',
+    userState: true,
   },
 };
+
+const mutations = {};
 const actions = {};
 
 export default new Vuex.Store({

@@ -2,8 +2,12 @@
   <div class="login">
     <div class="in-login">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="登录" name="login">登录</el-tab-pane>
-        <el-tab-pane label="注册" name="register">注册</el-tab-pane>
+        <el-tab-pane label="登录" name="login">
+          <LoginForm></LoginForm>
+        </el-tab-pane>
+        <el-tab-pane label="注册" name="register">
+          <RegisterForm></RegisterForm>
+        </el-tab-pane>
       </el-tabs>
     </div>
 
@@ -11,7 +15,8 @@
 </template>
 
 <script>
-  import {mapState, mapMutations, mapActions} from 'vuex'
+  import LoginForm from '../admin/loginForm';
+  import RegisterForm from '../admin/registerForm';
 
   export default {
     name: 'login',
@@ -25,8 +30,9 @@
         console.log(tab, event);
       }
     },
-    computed: {
-      ...mapState(['user']),
+
+    components: {
+      LoginForm, RegisterForm
     }
   }
 </script>
