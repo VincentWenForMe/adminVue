@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    frontEnd page part
+  <div class="dashboard">
+    dashboard
   </div>
 </template>
 
 <script>
   export default {
-    name: 'home',
+    name: 'dashboard'
   }
 </script>
 

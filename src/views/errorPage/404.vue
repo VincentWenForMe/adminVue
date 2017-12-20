@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    frontEnd page part
+  <div class="ratings">
+    404
   </div>
 </template>
 
 <script>
   export default {
-    name: 'home',
+    name: 'ratings'
   }
 </script>
 

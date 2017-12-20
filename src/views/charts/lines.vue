@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    frontEnd page part
+  <div class="line">
+    line
   </div>
 </template>
 
 <script>
   export default {
-    name: 'home',
+    name: 'line'
   }
 </script>
 
