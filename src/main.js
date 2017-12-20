@@ -23,7 +23,6 @@ router.beforeEach((to, form, next) => {
   }
 });
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

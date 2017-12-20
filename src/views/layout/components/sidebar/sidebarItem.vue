@@ -1,23 +1,20 @@
 <template>
   <div class="sidebarItem">
-      <div class="">
-        <router-link to="/dashboard">dashboard</router-link>
+    <div v-for="navItem in initNavData" v-if="navItem.children">
+      <div v-for="subNavItem in navItem.children">
+        <router-link :to="subNavItem.path">{{subNavItem.meta.title}}</router-link>
       </div>
-    <div class="">
-      <router-link to="/documentation">documentation</router-link>
-    </div>
-    <div class="">
-      <router-link to="/charts/keyboard">keyboard</router-link>
-    </div>
-    <div class="">
-      <router-link to="/charts/lines">lines</router-link>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   export default {
-    name: 'sidebarItem'
+    name: 'sidebarItem',
+    computed: {
+      ...mapGetters(['initNavData'])
+    }
   }
 </script>
 
