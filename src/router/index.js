@@ -7,6 +7,7 @@ Vue.use(Router);
 
 import Layout from '../views/layout/layout';
 
+
 export const constantRouterMap = [
   {
     path: '',
@@ -14,10 +15,10 @@ export const constantRouterMap = [
     redirect: 'dashboard',
     children: [
       {
-        path: 'dashboard',
+        path: '/dashboard',
         component: _import('dashboard/index'),
         name: 'dashboard',
-        meta: {}
+        meta: {title: '首页'}
       },
     ]
   },
@@ -30,7 +31,7 @@ export const constantRouterMap = [
         path: '/documentation/index',
         component: _import('documentation/index'),
         name: 'documentation',
-        meta: {}
+        meta: {title: '文档'}
       }
     ]
   },
@@ -43,32 +44,38 @@ export const constantRouterMap = [
         path: '/charts/keyboard',
         component: _import('charts/keyboard'),
         name: 'charts',
-        meta: {}
+        meta: {title: '键盘表'}
       },
       {
         path: '/charts/lines',
         component: _import('charts/lines'),
         name: 'charts',
-        meta: {}
+        meta: {title: '线性表'}
       }
     ]
   },
   {
     path: '/login',
     component: _import('login/index'),
+    meta: {title: '登录'}
   },
   {
     path: '/401',
     component: _import('errorPage/401'),
+    meta: {title: '401'}
   },
   {
     path: '/404',
     component: _import('errorPage/404'),
+    meta: {title: '404'}
   }
 ];
 
 const router = new Router({
   routes: constantRouterMap
 });
+
+
+const asyncRouterMap = [];
 
 export default router;
