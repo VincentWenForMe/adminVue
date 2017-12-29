@@ -72,6 +72,7 @@ export const constantRouterMap = [
 ];
 
 const router = new Router({
+  mode: 'history',
   routes: constantRouterMap
 });
 
