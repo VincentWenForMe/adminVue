@@ -39,17 +39,16 @@ export const constantRouterMap = [
     path: '/charts',
     component: Layout,
     redirect: '/charts/keyboard',
+    name: 'charts',
     children: [
       {
         path: '/charts/keyboard',
         component: _import('charts/keyboard'),
-        name: 'charts',
         meta: {title: '键盘表'}
       },
       {
         path: '/charts/lines',
         component: _import('charts/lines'),
-        name: 'charts',
         meta: {title: '线性表'}
       }
     ]

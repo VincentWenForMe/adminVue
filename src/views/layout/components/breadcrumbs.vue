@@ -20,7 +20,7 @@
   .breadcrumbs {
     min-height: 50px;
     line-height: 50px;
-    padding-left: 10px;
+    padding-left: 20px;
     border-bottom: 1px solid #e6e6e6;
   }
 
