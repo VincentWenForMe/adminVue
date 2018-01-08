@@ -54,6 +54,19 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/ele',
+    component: Layout,
+    redirect: '/ele/markdown',
+    name: 'ele',
+    children: [
+      {
+        path: '/ele/markdown',
+        component: _import('ele/markdown'),
+        meta: {title: 'UEEditor富文本'}
+      }
+    ]
+  },
+  {
     path: '/login',
     component: _import('login/index'),
     meta: {title: '登录'}
