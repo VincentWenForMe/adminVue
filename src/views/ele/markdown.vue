@@ -9,15 +9,15 @@
 
 <script>
   import UE from './UE';
-
+  
   export default {
     name: 'markdown',
     data() {
       return {
         defaultMsg: '这里是UE测试sgdhfjsdjh',
-        config: {
+        config: {  // UE 编辑器配置
           initialFrameWidth: null,
-          initialFrameHeight: 750
+          initialFrameHeight: 700
         }
       }
     },
@@ -36,7 +36,7 @@
     components: {
       UE
     },
-
+    
   }
 </script>
 
