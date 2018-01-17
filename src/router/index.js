@@ -75,7 +75,33 @@ export const constantRouterMap = [
       {
         path: '/form/submitForm',
         component: _import('form/submitForm'),
-        meta: {title: '提交表单'}
+        meta: {title: 'form'}
+      }
+    ]
+  },
+  {
+    path: '/table',
+    component: Layout,
+    redirect: '/table/table',
+    name: 'table',
+    children: [
+      {
+        path: '/table/table',
+        component: _import('table/table'),
+        meta: {title: 'table'}
+      }
+    ]
+  },
+  {
+    path: '/meta',
+    component: Layout,
+    redirect: '/meta/meta',
+    name: 'meta',
+    children: [
+      {
+        path: '/meta/meta',
+        component: _import('meta/meta'),
+        meta: {title: 'meta'}
       }
     ]
   },
