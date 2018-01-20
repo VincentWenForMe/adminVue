@@ -69,12 +69,12 @@ export const constantRouterMap = [
   {
     path: '/form',
     component: Layout,
-    redirect: '/form/submitForm',
+    redirect: '/form',
     name: 'form',
     children: [
       {
-        path: '/form/submitForm',
-        component: _import('form/submitForm'),
+        path: '/form',
+        component: _import('form/index'),
         meta: {title: 'form'}
       }
     ]

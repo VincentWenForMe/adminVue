@@ -12,17 +12,29 @@
       <dd>G.输入框的属性配置（可输入\不可输入（一般是在查看中使用））</dd>
       <dt>2.一键获取表单提交的内容</dt>
       <dt>3.根据数据初始化表单</dt>
-      {{formData}}
+      <!--{{formData}}-->
+      
+      <div v-for="itemLine in formData.formDataInit">
+        
+        <el-row :gutter="20" v-if="itemLine.length > 1">
+          <div v-for="itemInput in itemLine">
+            <el-col :span="6">
+              <label for="">{{itemInput.label}}</label>
+              <el-input placeholder="请输入内容" :name="itemInput.name" v-if="itemInput.type === 'input'"></el-input>
+            </el-col>
+          </div>
+        </el-row>
+        
+        <el-row :gutter="20" v-else>
+          <el-col :span="24">
+            <label for="">{{itemLine[0].label}}</label>
+            <el-input placeholder="请输入内容" :name="itemLine[0].name" v-if="itemLine[0].type === 'input'"></el-input>
+          </el-col>
+        </el-row>
+      </div>
+    
+    
     </dl>
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </div>
 </template>
 
@@ -30,53 +42,9 @@
   export default {
     name: 'submitForm',
     data() {
-      return {
-        formData: {
-          config: {
-            filesUpload: true,
-            disabled: true  // 设置整表的框
-          },
-          formDataInit: [
-            [
-              {
-                label: '标签名称',
-                name: '输入框name属性',
-                must: true,
-                dataProvide: true,
-                check: 'string',
-                disabled: true // 每一个框的设置
-              },
-              {
-                label: '标签名称',
-                name: '输入框name属性',
-                must: true,
-                dataProvide: true,
-                check: 'string',
-                disabled: true // 每一个框的设置
-              },
-              {
-                label: '标签名称',
-                name: '输入框name属性',
-                must: true,
-                dataProvide: true,
-                check: 'string',
-                disabled: true // 每一个框的设置
-              },
-            ],
-            [
-              {
-                label: '标签名称',
-                name: '输入框name属性',
-                must: true,
-                dataProvide: true,
-                check: 'string',
-                disabled: true // 每一个框的设置
-              }
-            ]
-          ]
-        }
-      }
-    }
+      return {}
+    },
+    props: ['formData']
   }
 </script>
 
