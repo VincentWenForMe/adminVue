@@ -1,5 +1,5 @@
 <template>
-	<div class="table">
+  <div class="tables">
     <h1>table的基本需求</h1>
     <dl>
       <dt>1.初始化表单</dt>
@@ -10,13 +10,20 @@
       <dd>D.单条信息的图片上传、附件上传、<b>附件下载</b></dd>
       <dt>3.复杂表头处理</dt>
     </dl>
-	</div>
+
+    <TableItem></TableItem>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'table'
+  import TableItem from './tableItem';
+
+  export default {
+    name: 'tables',
+    components: {
+      TableItem
     }
+  }
 </script>
 
 

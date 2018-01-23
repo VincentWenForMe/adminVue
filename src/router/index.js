@@ -80,14 +80,14 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/table',
+    path: '/tables',
     component: Layout,
-    redirect: '/table/table',
-    name: 'table',
+    redirect: '/tables/tables',
+    name: 'tables',
     children: [
       {
-        path: '/table/table',
-        component: _import('table/table'),
+        path: '/tables/tables',
+        component: _import('tables/tables'),
         meta: {title: 'table'}
       }
     ]

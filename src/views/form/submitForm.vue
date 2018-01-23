@@ -13,9 +13,9 @@
       <dt>2.一键获取表单提交的内容</dt>
       <dt>3.根据数据初始化表单</dt>
       <!--{{formData}}-->
-      
+
       <div v-for="itemLine in formData.formDataInit">
-        
+
         <el-row :gutter="20" v-if="itemLine.length > 1">
           <div v-for="itemInput in itemLine">
             <el-col :span="6">
@@ -24,7 +24,7 @@
             </el-col>
           </div>
         </el-row>
-        
+
         <el-row :gutter="20" v-else>
           <el-col :span="24">
             <label for="">{{itemLine[0].label}}</label>
@@ -32,8 +32,6 @@
           </el-col>
         </el-row>
       </div>
-    
-    
     </dl>
   </div>
 </template>

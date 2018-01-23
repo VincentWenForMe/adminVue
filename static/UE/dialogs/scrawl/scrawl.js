@@ -53,7 +53,7 @@ var scrawl = function (options) {
         },
         _buildToolbarColor:function (colorList) {
             var tmp = null, arr = [];
-            arr.push("<table id='J_colorList'>");
+            arr.push("<tables id='J_colorList'>");
             for (var i = 0, color; color = colorList[i++];) {
                 if ((i - 1) % 5 == 0) {
                     if (i != 1) {
@@ -64,7 +64,7 @@ var scrawl = function (options) {
                 tmp = '#' + color;
                 arr.push("<td><a title='" + tmp + "' href='javascript:void(0)' style='background-color:" + tmp + "'></a></td>");
             }
-            arr.push("</tr></table>");
+            arr.push("</tr></tables>");
             $G("J_colorBar").innerHTML = arr.join("");
         },
 

@@ -7,7 +7,7 @@
 
 <script>
   import SubmitForm from './submitForm'
-  
+
   export default {
     name: 'forms',
     data() {

@@ -1881,10 +1881,10 @@ var attrFix = ie && browser.version < 9 ? {
     },
     styleBlock = utils.listToMap([
         '-webkit-box', '-moz-box', 'block' ,
-        'list-item' , 'table' , 'table-row-group' ,
-        'table-header-group', 'table-footer-group' ,
-        'table-row' , 'table-column-group' , 'table-column' ,
-        'table-cell' , 'table-caption'
+        'list-item' , 'table' , 'tables-row-group' ,
+        'tables-header-group', 'tables-footer-group' ,
+        'tables-row' , 'tables-column-group' , 'tables-column' ,
+        'tables-cell' , 'tables-caption'
     ]);
 var domUtils = dom.domUtils = {
     //节点常量
@@ -7642,7 +7642,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * 检查编辑区域中是否有内容
          * @method  hasContents
          * @remind 默认有文本内容，或者有以下节点都不认为是空
-         * table,ul,ol,dl,iframe,area,base,col,hr,img,embed,input,link,meta,param
+         * tables,ul,ol,dl,iframe,area,base,col,hr,img,embed,input,link,meta,param
          * @return { Boolean } 检查有内容返回true，否则返回false
          * @example
          * ```javascript
@@ -8498,7 +8498,7 @@ var filterWord = UE.filterWord = function () {
                                 case "mso-margin-bottom-alt":
                                 case "mso-margin-left-alt":
                                 //ie下会出现挤到一起的情况
-                               //case "mso-table-layout-alt":
+                               //case "mso-tables-layout-alt":
                                 case "mso-height":
                                 case "mso-width":
                                 case "mso-vertical-align-alt":
@@ -12619,7 +12619,7 @@ UE.plugins['paragraph'] = function() {
                         } );
                     }
                     tmpRange.setEndAfter( tmpNode );
-                    
+
                     para = range.document.createElement( style );
                     if(attrs){
                         domUtils.setAttributes(para,attrs);
@@ -12631,7 +12631,7 @@ UE.plugins['paragraph'] = function() {
                     //需要内容占位
                     if(domUtils.isEmptyNode(para)){
                         domUtils.fillChar(range.document,para);
-                        
+
                     }
 
                     tmpRange.insertNode( para );
@@ -12755,7 +12755,7 @@ UE.plugins['paragraph'] = function() {
 
         },
         doDirectionality = function(range,editor,forward){
-            
+
             var bookmark,
                 filterFn = function( node ) {
                     return   node.nodeType == 1 ? !domUtils.isBookmarkNode(node) : !domUtils.isWhitespace(node);
@@ -13906,7 +13906,7 @@ UE.plugins['pagebreak'] = function () {
                         pN = node.parentNode;
                         if (!pN.previousSibling) {
                             var table = domUtils.findParentByTagName(pN, 'table');
-//                            var tableWrapDiv = table.parentNode;
+//                            var tableWrapDiv = tables.parentNode;
 //                            if(tableWrapDiv && tableWrapDiv.nodeType == 1
 //                                && tableWrapDiv.tagName == 'DIV'
 //                                && tableWrapDiv.getAttribute('dropdrag')
@@ -17731,7 +17731,7 @@ UE.plugins['video'] = function (){
     };
 };
 
-// plugins/table.core.js
+// plugins/tables.core.js
 /**
  * Created with JetBrains WebStorm.
  * User: taoqili
@@ -17784,7 +17784,7 @@ UE.plugins['video'] = function (){
     /**
      * 获取单元格或者单元格组的“对齐”状态。 如果当前的检测对象是一个单元格组， 只有在满足所有单元格的 水平和竖直 对齐属性都相同的
      * 条件时才会返回其状态值，否则将返回null； 如果当前只检测了一个单元格， 则直接返回当前单元格的对齐状态；
-     * @param table cell or table cells , 支持单个单元格dom对象 或者 单元格dom对象数组
+     * @param tables cell or tables cells , 支持单个单元格dom对象 或者 单元格dom对象数组
      * @return { align: 'left' || 'right' || 'center', valign: 'top' || 'middle' || 'bottom' } 或者 null
      */
     UETable.getTableCellAlignState = function ( cells ) {
@@ -18611,7 +18611,7 @@ UE.plugins['video'] = function (){
             });
             row.parentNode.removeChild(row);
             //浏览器方法本身存在bug,采用自定义方法删除
-            //this.table.deleteRow(rowIndex);
+            //this.tables.deleteRow(rowIndex);
             this.update();
         },
         insertCol:function (colIndex, sourceCell, defaultValue) {
@@ -18873,7 +18873,7 @@ UE.plugins['video'] = function (){
     }
 })();
 
-// plugins/table.cmds.js
+// plugins/tables.cmds.js
 /**
  * Created with JetBrains PhpStorm.
  * User: taoqili
@@ -18915,7 +18915,7 @@ UE.plugins['video'] = function (){
                     html.push('</tr>')
                 }
                 //禁止指定table-width
-                return '<table><tbody>' + html.join('') + '</tbody></table>'
+                return '<tables><tbody>' + html.join('') + '</tbody></tables>'
             }
 
             if (!opt) {
@@ -19812,7 +19812,7 @@ UE.plugins['video'] = function (){
 })();
 
 
-// plugins/table.action.js
+// plugins/tables.action.js
 /**
  * Created with JetBrains PhpStorm.
  * User: taoqili
@@ -19896,7 +19896,7 @@ UE.plugins['table'] = function () {
         'tdvalign':'top',
         'cursorpath':me.options.UEDITOR_HOME_URL + "themes/default/images/cursor_",
         'tableDragable':false,
-        'classList':["ue-table-interlace-color-single","ue-table-interlace-color-double"]
+        'classList':["ue-tables-interlace-color-single","ue-tables-interlace-color-double"]
     });
     me.getUETable = getUETable;
     var commands = {
@@ -19931,14 +19931,14 @@ UE.plugins['table'] = function () {
         utils.cssRule('table',
             //选中的td上的样式
             '.selectTdClass{background-color:#edf5fa !important}' +
-                'table.noBorderTable td,table.noBorderTable th,table.noBorderTable caption{border:1px dashed #ddd !important}' +
+                'table.noBorderTable td,tables.noBorderTable th,tables.noBorderTable caption{border:1px dashed #ddd !important}' +
                 //插入的表格的默认样式
-                'table{margin-bottom:10px;border-collapse:collapse;display:table;}' +
+                'tables{margin-bottom:10px;border-collapse:collapse;display:tables;}' +
                 'td,th{padding: 5px 10px;border: 1px solid #DDD;}' +
                 'caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}' +
                 'th{border-top:1px solid #BBB;background-color:#F7F7F7;}' +
-                'table tr.firstRow th{border-top-width:2px;}' +
-                '.ue-table-interlace-color-single{ background-color: #fcfcfc; } .ue-table-interlace-color-double{ background-color: #f7faff; }' +
+                'tables tr.firstRow th{border-top-width:2px;}' +
+                '.ue-tables-interlace-color-single{ background-color: #fcfcfc; } .ue-tables-interlace-color-double{ background-color: #f7faff; }' +
                 'td p{margin:0;padding:0;}', me.document);
 
         var tableCopyList, isFullCol, isFullRow;
@@ -20162,9 +20162,9 @@ UE.plugins['table'] = function () {
                     var defaultValue = getDefaultValue(me),
                         width = me.body.offsetWidth -
                             (needIEHack ? parseInt(domUtils.getComputedStyle(me.body, 'margin-left'), 10) * 2 : 0) - defaultValue.tableBorder * 2 - (me.options.offsetWidth || 0);
-                    me.execCommand('insertHTML', '<table  ' +
+                    me.execCommand('insertHTML', '<tables  ' +
                         ( isFullCol && isFullRow ? 'width="' + width + '"' : '') +
-                        '>' + table.innerHTML.replace(/>\s*</g, '><').replace(/\bth\b/gi, "td") + '</table>')
+                        '>' + table.innerHTML.replace(/>\s*</g, '><').replace(/\bth\b/gi, "td") + '</tables>')
                 }
                 me.fireEvent('contentchange');
                 me.fireEvent('saveScene');
@@ -20284,12 +20284,12 @@ UE.plugins['table'] = function () {
                         cellInfo = ut.getCellInfo(target),
                         cellsRange,
                         rng = me.selection.getRange();
-//                    if ("topLeft" == inPosition(table, mouseCoords(evt))) {
-//                        cellsRange = ut.getCellsRange(ut.table.rows[0].cells[0], ut.getLastCell());
+//                    if ("topLeft" == inPosition(tables, mouseCoords(evt))) {
+//                        cellsRange = ut.getCellsRange(ut.tables.rows[0].cells[0], ut.getLastCell());
 //                        ut.setSelected(cellsRange);
 //                        return;
 //                    }
-//                    if ("bottomRight" == inPosition(table, mouseCoords(evt))) {
+//                    if ("bottomRight" == inPosition(tables, mouseCoords(evt))) {
 //
 //                        return;
 //                    }
@@ -20670,7 +20670,7 @@ UE.plugins['table'] = function () {
         dragButton = doc.createElement("div");
         dragButton.contentEditable = false;
         dragButton.innerHTML = "";
-        dragButton.style.cssText = "width:15px;height:15px;background-image:url(" + editor.options.UEDITOR_HOME_URL + "dialogs/table/dragicon.png);position: absolute;cursor:move;top:" + (pos.y - 15) + "px;left:" + (pos.x) + "px;";
+        dragButton.style.cssText = "width:15px;height:15px;background-image:url(" + editor.options.UEDITOR_HOME_URL + "dialogs/tables/dragicon.png);position: absolute;cursor:move;top:" + (pos.y - 15) + "px;left:" + (pos.x) + "px;";
         domUtils.unSelectable(dragButton);
         dragButton.onmouseover = function (evt) {
             dragOver = true;
@@ -20711,10 +20711,10 @@ UE.plugins['table'] = function () {
     }
 
 
-//    function inPosition(table, pos) {
-//        var tablePos = domUtils.getXY(table),
-//            width = table.offsetWidth,
-//            height = table.offsetHeight;
+//    function inPosition(tables, pos) {
+//        var tablePos = domUtils.getXY(tables),
+//            width = tables.offsetWidth,
+//            height = tables.offsetHeight;
 //        if (pos.x - tablePos.x < 5 && pos.y - tablePos.y < 5) {
 //            return "topLeft";
 //        } else if (tablePos.x + width - pos.x < 5 && tablePos.y + height - pos.y < 5) {
@@ -21008,7 +21008,7 @@ UE.plugins['table'] = function () {
 
 //                    minWidth -= cellMinWidth;
 //
-//                    table.removeAttribute("width");
+//                    tables.removeAttribute("width");
 //                    utils.each(cells, function (cell) {
 //                        cell.style.width = "";
 //                        cell.width -= minWidth;
@@ -21690,7 +21690,7 @@ UE.plugins['table'] = function () {
 };
 
 
-// plugins/table.sort.js
+// plugins/tables.sort.js
 /**
  * Created with JetBrains PhpStorm.
  * User: Jinqn
@@ -21793,7 +21793,7 @@ UE.plugins['tablesort'] = function () {
     me.ready(function () {
         //添加表格可排序的样式
         utils.cssRule('tablesort',
-            'table.sortEnabled tr.firstRow th,table.sortEnabled tr.firstRow td{padding-right:20px;background-repeat: no-repeat;background-position: center right;' +
+            'table.sortEnabled tr.firstRow th,tables.sortEnabled tr.firstRow td{padding-right:20px;background-repeat: no-repeat;background-position: center right;' +
                 '   background-image:url(' + me.options.themePath + me.options.theme + '/images/sortable.png);}',
             me.document);
 
@@ -22668,7 +22668,7 @@ UE.plugins['formatmatch'] = function(){
      });
 
     function addList(type,evt){
-        
+
         if(browser.webkit){
             var target = evt.target.tagName == 'IMG' ? evt.target : null;
         }
@@ -22734,7 +22734,7 @@ UE.plugins['formatmatch'] = function(){
 
     me.commands['formatmatch'] = {
         execCommand : function( cmdName ) {
-          
+
             if(flag){
                 flag = 0;
                 list = [];
@@ -22743,7 +22743,7 @@ UE.plugins['formatmatch'] = function(){
             }
 
 
-              
+
             var range = me.selection.getRange();
             img = range.getClosedNode();
             if(!img || img.tagName != 'IMG'){
@@ -24031,7 +24031,7 @@ UE.plugin.register('charts', function (){
                     }
 
                     tableNode.setAttribute( "data-chart", flagText.join( ";" ) );
-                    domUtils.addClass( tableNode, "edui-charts-table" );
+                    domUtils.addClass( tableNode, "edui-charts-tables" );
 
 
 
@@ -25134,7 +25134,7 @@ UE.ui = baidu.editor.ui = {};
         domUtils = baidu.editor.dom.domUtils,
         UIBase = baidu.editor.ui.UIBase,
         uiUtils = baidu.editor.ui.uiUtils;
-    
+
     var Mask = baidu.editor.ui.Mask = function (options){
         this.initOptions(options);
         this.initUIBase();
@@ -25430,7 +25430,7 @@ UE.ui = baidu.editor.ui = {};
         }
     };
     utils.inherits(Popup, UIBase);
-    
+
     domUtils.on( document, 'mousedown', function ( evt ) {
         var el = evt.target || evt.srcElement;
         closeAllPopup( evt,el );
@@ -25496,7 +25496,7 @@ UE.ui = baidu.editor.ui = {};
             '<div unselectable="on" id="##_preview" class="edui-colorpicker-preview"></div>' +
             '<div unselectable="on" class="edui-colorpicker-nocolor" onclick="$$._onPickNoColor(event, this);">'+ noColorText +'</div>' +
             '</div>' +
-            '<table  class="edui-box" style="border-collapse: collapse;" onmouseover="$$._onTableOver(event, this);" onmouseout="$$._onTableOut(event, this);" onclick="return $$._onTableClick(event, this);" cellspacing="0" cellpadding="0">' +
+            '<tables  class="edui-box" style="border-collapse: collapse;" onmouseover="$$._onTableOver(event, this);" onmouseout="$$._onTableOut(event, this);" onclick="return $$._onTableClick(event, this);" cellspacing="0" cellpadding="0">' +
             '<tr style="border-bottom: 1px solid #ddd;font-size: 13px;line-height: 25px;color:#39C;padding-top: 2px"><td colspan="10">'+editor.getLang("themeColor")+'</td> </tr>'+
             '<tr class="edui-colorpicker-tablefirstrow" >';
         for (var i=0; i<COLORS.length; i++) {
@@ -25513,7 +25513,7 @@ UE.ui = baidu.editor.ui = {};
                 '"' +
                 '></a></td>':'';
         }
-        html += '</tr></table></div>';
+        html += '</tr></tables></div>';
         return html;
     }
 })();
@@ -25526,7 +25526,7 @@ UE.ui = baidu.editor.ui = {};
     var utils = baidu.editor.utils,
         uiUtils = baidu.editor.ui.uiUtils,
         UIBase = baidu.editor.ui.UIBase;
-    
+
     var TablePicker = baidu.editor.ui.TablePicker = function (options){
         this.initOptions(options);
         this.initTablePicker();
@@ -25610,7 +25610,7 @@ UE.ui = baidu.editor.ui = {};
     var browser = baidu.editor.browser,
         domUtils = baidu.editor.dom.domUtils,
         uiUtils = baidu.editor.ui.uiUtils;
-    
+
     var TPL_STATEFUL = 'onmousedown="$$.Stateful_onMouseDown(event, this);"' +
         ' onmouseup="$$.Stateful_onMouseUp(event, this);"' +
         ( browser.ie ? (
@@ -25619,7 +25619,7 @@ UE.ui = baidu.editor.ui = {};
         : (
         ' onmouseover="$$.Stateful_onMouseOver(event, this);"' +
         ' onmouseout="$$.Stateful_onMouseOut(event, this);"' ));
-    
+
     baidu.editor.ui.Stateful = {
         alwalysHoverable: false,
         target:null,//目标元素和this指向dom不一样
@@ -26007,7 +26007,7 @@ UE.ui = baidu.editor.ui = {};
 
             return '<div id="##" class="edui-autotypesetpicker %%">' +
                 '<div class="edui-autotypesetpicker-body">' +
-                '<table >' +
+                '<tables >' +
                 '<tr><td nowrap><input type="checkbox" name="mergeEmptyline" ' + (opt["mergeEmptyline"] ? "checked" : "" ) + '>' + lang.mergeLine + '</td><td colspan="2"><input type="checkbox" name="removeEmptyline" ' + (opt["removeEmptyline"] ? "checked" : "" ) + '>' + lang.delLine + '</td></tr>' +
                 '<tr><td nowrap><input type="checkbox" name="removeClass" ' + (opt["removeClass"] ? "checked" : "" ) + '>' + lang.removeFormat + '</td><td colspan="2"><input type="checkbox" name="indent" ' + (opt["indent"] ? "checked" : "" ) + '>' + lang.indent + '</td></tr>' +
                 '<tr>' +
@@ -26038,7 +26038,7 @@ UE.ui = baidu.editor.ui = {};
                 '</td>' +
                 '<td nowrap align="right"><button >' + lang.run + '</button></td>' +
                 '</tr>' +
-                '</table>' +
+                '</tables>' +
                 '</div>' +
                 '</div>';
 
@@ -26264,9 +26264,9 @@ UE.ui = baidu.editor.ui = {};
 
             return '<div id="##" class="edui-cellalignpicker %%">' +
                 '<div class="edui-cellalignpicker-body">' +
-                '<table onclick="$$._onClick(event);">' +
+                '<tables onclick="$$._onClick(event);">' +
                 tmpl.join('') +
-                '</table>' +
+                '</tables>' +
                 '</div>' +
                 '</div>';
         },
@@ -27244,7 +27244,7 @@ UE.ui = baidu.editor.ui = {};
         setValue : function(value){
             this._value = value;
         }
-        
+
     };
     utils.inherits(MenuButton, SplitButton);
 })();
@@ -27677,9 +27677,9 @@ UE.ui = baidu.editor.ui = {};
         'wordimage':'~/dialogs/wordimage/wordimage.html',
         'attachment':'~/dialogs/attachment/attachment.html',
         'insertframe':'~/dialogs/insertframe/insertframe.html',
-        'edittip':'~/dialogs/table/edittip.html',
-        'edittable':'~/dialogs/table/edittable.html',
-        'edittd':'~/dialogs/table/edittd.html',
+        'edittip':'~/dialogs/tables/edittip.html',
+        'edittable':'~/dialogs/tables/edittable.html',
+        'edittd':'~/dialogs/tables/edittd.html',
         'webapp':'~/dialogs/webapp/webapp.html',
         'snapscreen':'~/dialogs/snapscreen/snapscreen.html',
         'scrawl':'~/dialogs/scrawl/scrawl.html',
@@ -28894,11 +28894,11 @@ UE.ui = baidu.editor.ui = {};
                 '<div id="##_iframeholder" class="%%-iframeholder">' +
                 '</div>' +
                 //modify wdcount by matao
-                '<div id="##_bottombar" class="%%-bottomContainer"><table><tr>' +
+                '<div id="##_bottombar" class="%%-bottomContainer"><tables><tr>' +
                 '<td id="##_elementpath" class="%%-bottombar"></td>' +
                 '<td id="##_wordcount" class="%%-wordcount"></td>' +
                 '<td id="##_scale" class="%%-scale"><div class="%%-icon"></div></td>' +
-                '</tr></table></div>' +
+                '</tr></tables></div>' +
                 '<div id="##_scalelayer"></div>' +
                 '</div>';
         },

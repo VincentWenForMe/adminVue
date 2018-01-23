@@ -72,7 +72,7 @@
         createTable:function (hasTitle, hasTitleCol, hasCaption) {
             var arr = [],
                 sortSpan = '<span>^</span>';
-            arr.push("<table id='J_example'>");
+            arr.push("<tables id='J_example'>");
             if (hasCaption) {
                 arr.push("<caption>" + lang.captionName + "</caption>")
             }
@@ -92,7 +92,7 @@
                 }
                 arr.push("</tr>");
             }
-            arr.push("</table>");
+            arr.push("</tables>");
             preview.innerHTML = arr.join("");
             this.updateSortSpan();
         },

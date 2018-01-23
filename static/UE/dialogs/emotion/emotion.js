@@ -123,7 +123,7 @@ function createTab( tabName ) {
             iColWidth = 3, //表格剩余空间的显示比例
             tableCss = emotion.imageCss[tabName],
             cssOffset = emotion.imageCssOffset[tabName],
-            textHTML = ['<table class="smileytable">'],
+            textHTML = ['<tables class="smileytable">'],
             i = 0, imgNum = emotion.SmileyBox[tabName].length, imgColNum = 11, faceImage,
             sUrl, realUrl, posflag, offset, infor;
 
@@ -149,7 +149,7 @@ function createTab( tabName ) {
         }
         textHTML.push( '</tr>' );
     }
-    textHTML.push( '</table>' );
+    textHTML.push( '</tables>' );
     textHTML = textHTML.join( "" );
     tab.innerHTML = textHTML;
 }
