@@ -106,6 +106,19 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/indexScroll',
+    component: Layout,
+    redirect: '/indexScroll/indexScroll',
+    name: 'indexScroll',
+    children: [
+      {
+        path: '/indexScroll/indexScroll',
+        component: _import('indexScroll/indexScroll'),
+        meta: {title: 'indexScroll'}
+      }
+    ]
+  },
+  {
     path: '/login',
     component: _import('login/index'),
     meta: {title: '登录'}
